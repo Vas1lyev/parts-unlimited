@@ -1,0 +1,32 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+artifacts/
+
+# IDE settings
+.idea/
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Test and coverage output
+TestResults/
+coverage/
+*.trx
+*.coverage
+*.coveragexml
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+secrets.json
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local course materials
+/hw/
