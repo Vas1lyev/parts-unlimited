@@ -30,3 +30,6 @@ Thumbs.db
 
 # Local course materials
 /hw/
+
+# Local checkout of the separate GitHub Wiki repository
+/wiki/

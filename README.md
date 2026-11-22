@@ -43,6 +43,9 @@ The project knowledge base is maintained in the
 The setup record for the first practical work is available in
 [Practice 1.1](docs/practices/1.1-project-setup.md).
 
+Результат работы с Wiki описан в документе
+[Практическая работа 1.2](docs/practices/1.2-wiki.md).
+
 ## Status
 
 The private repository and project workspace have been initialized.
