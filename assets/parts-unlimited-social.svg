@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">Parts Unlimited social preview</title>
+  <desc id="desc">Parts Unlimited project branding for the .NET 8 software engineering workspace.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0969da"/>
+      <stop offset="1" stop-color="#033d8b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" rx="48" fill="url(#background)"/>
+  <circle cx="280" cy="320" r="150" fill="none" stroke="#ffffff" stroke-width="40" stroke-dasharray="57 28"/>
+  <circle cx="280" cy="320" r="96" fill="#0969da" stroke="#ffffff" stroke-width="18"/>
+  <text x="280" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="86" font-weight="700" fill="#ffffff">PU</text>
+  <text x="500" y="285" font-family="Arial, sans-serif" font-size="76" font-weight="700" fill="#ffffff">Parts Unlimited</text>
+  <text x="504" y="360" font-family="Arial, sans-serif" font-size="34" fill="#dbeafe">.NET 8 Software Engineering Project</text>
+  <rect x="504" y="405" width="520" height="4" rx="2" fill="#60a5fa"/>
+</svg>
