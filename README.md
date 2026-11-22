@@ -24,7 +24,7 @@ tracking, and CI. GanttPRO will be used for resource and delivery planning.
 ```text
 src/        application source code
 tests/      automated tests
-docs/       project documentation and wiki source
+docs/       project records and supporting documentation
 assets/     project branding and shared media
 ```
 
@@ -38,7 +38,8 @@ assets/     project branding and shared media
 
 ## Documentation
 
-The initial project description is available on the [wiki home page](docs/wiki/Home.md).
+The project knowledge base is maintained in the
+[GitHub Wiki](https://github.com/Vas1lyev/parts-unlimited/wiki).
 The setup record for the first practical work is available in
 [Practice 1.1](docs/practices/1.1-project-setup.md).
 
