@@ -46,6 +46,10 @@ The setup record for the first practical work is available in
 Результат работы с Wiki описан в документе
 [Практическая работа 1.2](docs/practices/1.2-wiki.md).
 
-## Status
+Подготовка тестовых данных и гибкое планирование описаны в документе
+[Практическая работа 2.1](docs/practices/2.1-planning.md).
 
-The private repository and project workspace have been initialized.
+## Текущее состояние
+
+Репозиторий, Wiki и проектное пространство настроены. Создан тестовый бэклог для
+планирования второго спринта.
