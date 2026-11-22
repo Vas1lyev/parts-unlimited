@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/parts-unlimited-logo.svg" width="128" alt="Parts Unlimited logo">
+</p>
+
 # Parts Unlimited
 
 Parts Unlimited is an educational software engineering project for practicing
@@ -35,7 +39,9 @@ assets/     project branding and shared media
 ## Documentation
 
 The initial project description is available on the [wiki home page](docs/wiki/Home.md).
+The setup record for the first practical work is available in
+[Practice 1.1](docs/practices/1.1-project-setup.md).
 
 ## Status
 
-Project initialization is in progress.
+The private repository and project workspace have been initialized.
