@@ -1,0 +1,93 @@
+name: Parts Unlimited CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "PartsUnlimited-aspnet45/**"
+      - ".github/workflows/parts-unlimited-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "PartsUnlimited-aspnet45/**"
+      - ".github/workflows/parts-unlimited-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: windows-2022
+    timeout-minutes: 20
+
+    env:
+      CONFIGURATION: Release
+      FRAMEWORK_ROOT: ${{ github.workspace }}\.ci\frameworks
+      WEBSITE_PROJECT: PartsUnlimited-aspnet45\src\PartsUnlimitedWebsite\PartsUnlimitedWebsite.csproj
+      TEST_PROJECT: PartsUnlimited-aspnet45\test\PartsUnlimited.UnitTests\PartsUnlimited.UnitTests.csproj
+      TEST_ASSEMBLY: PartsUnlimited-aspnet45\test\PartsUnlimited.UnitTests\bin\Release\PartsUnlimited.UnitTests.dll
+      PUBLISH_DIR: ${{ github.workspace }}\artifacts\website
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Install .NET Framework reference assemblies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          nuget install Microsoft.NETFramework.ReferenceAssemblies.net451 -Version 1.0.3 -OutputDirectory .ci -ExcludeVersion
+          nuget install Microsoft.NETFramework.ReferenceAssemblies.net452 -Version 1.0.3 -OutputDirectory .ci -ExcludeVersion
+          New-Item -ItemType Directory -Force -Path $env:FRAMEWORK_ROOT | Out-Null
+          Copy-Item ".ci\Microsoft.NETFramework.ReferenceAssemblies.net451\build\.NETFramework\v4.5.1" "$env:FRAMEWORK_ROOT\v4.5.1" -Recurse
+          Copy-Item ".ci\Microsoft.NETFramework.ReferenceAssemblies.net452\build\.NETFramework\v4.5.2" "$env:FRAMEWORK_ROOT\v4.5.2" -Recurse
+
+      - name: Restore NuGet packages
+        shell: pwsh
+        run: nuget restore PartsUnlimited-aspnet45\PartsUnlimited.sln -NonInteractive
+
+      - name: Build and publish website
+        shell: pwsh
+        run: >-
+          msbuild $env:WEBSITE_PROJECT
+          /m
+          /p:Configuration=$env:CONFIGURATION
+          /p:Platform=AnyCPU
+          /p:TargetFrameworkRootPath=$env:FRAMEWORK_ROOT
+          /p:DeployOnBuild=true
+          /p:WebPublishMethod=FileSystem
+          /p:DeleteExistingFiles=true
+          /p:publishUrl=$env:PUBLISH_DIR
+
+      - name: Build unit tests
+        shell: pwsh
+        run: >-
+          msbuild $env:TEST_PROJECT
+          /m
+          /p:Configuration=$env:CONFIGURATION
+          /p:Platform=AnyCPU
+          /p:TargetFrameworkRootPath=$env:FRAMEWORK_ROOT
+
+      - name: Run unit tests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vstest = & $vswhere -latest -products * -find "**\vstest.console.exe" | Select-Object -First 1
+          if (-not $vstest) { throw "vstest.console.exe was not found" }
+          & $vstest $env:TEST_ASSEMBLY /Platform:x64 /TestCaseFilter:"TestCategory=Unit Tests"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload website artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parts-unlimited-website
+          path: ${{ env.PUBLISH_DIR }}
+          if-no-files-found: error
+          retention-days: 7
