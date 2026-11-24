@@ -7,9 +7,9 @@
 Parts Unlimited is an educational software engineering project for practicing
 project planning, documentation, continuous integration, and delivery workflows.
 
-The project models an online auto-parts store and will be implemented as a
-.NET 8 application. GitHub is used for source control, documentation, work
-tracking, delivery planning, and CI.
+The project models an online auto-parts store using the original Microsoft
+Parts Unlimited training application based on ASP.NET 4.5. GitHub is used for
+source control, documentation, work tracking, delivery planning, and CI.
 
 ## Project goals
 
@@ -22,18 +22,23 @@ tracking, delivery planning, and CI.
 ## Planned solution structure
 
 ```text
-src/        application source code
-tests/      automated tests
-docs/       project records and supporting documentation
-assets/     project branding and shared media
+PartsUnlimited-aspnet45/src/    application source code
+PartsUnlimited-aspnet45/test/   automated tests
+docs/                         project records and supporting documentation
+assets/                       project branding and shared media
 ```
 
 ## Technology
 
-- .NET 8
-- ASP.NET Core
+- .NET Framework 4.5
+- ASP.NET MVC
 - GitHub Projects and Issues
 - GitHub Actions
+
+The application was imported from the archived
+[Microsoft PartsUnlimitedE2E repository](https://github.com/microsoft/PartsUnlimitedE2E).
+Its original license and documentation are preserved inside
+`PartsUnlimited-aspnet45`.
 
 ## Documentation
 
