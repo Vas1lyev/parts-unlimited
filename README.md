@@ -35,11 +35,6 @@ assets/                       project branding and shared media
 - GitHub Projects and Issues
 - GitHub Actions
 
-The application was imported from the archived
-[Microsoft PartsUnlimitedE2E repository](https://github.com/microsoft/PartsUnlimitedE2E).
-Its original license and documentation are preserved inside
-`PartsUnlimited-aspnet45`.
-
 ## Documentation
 
 The project knowledge base is maintained in the
