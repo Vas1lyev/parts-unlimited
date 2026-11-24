@@ -43,9 +43,10 @@ jobs:
           $ErrorActionPreference = "Stop"
           nuget install Microsoft.NETFramework.ReferenceAssemblies.net451 -Version 1.0.3 -OutputDirectory .ci -ExcludeVersion
           nuget install Microsoft.NETFramework.ReferenceAssemblies.net452 -Version 1.0.3 -OutputDirectory .ci -ExcludeVersion
-          New-Item -ItemType Directory -Force -Path $env:FRAMEWORK_ROOT | Out-Null
-          Copy-Item ".ci\Microsoft.NETFramework.ReferenceAssemblies.net451\build\.NETFramework\v4.5.1" "$env:FRAMEWORK_ROOT\v4.5.1" -Recurse
-          Copy-Item ".ci\Microsoft.NETFramework.ReferenceAssemblies.net452\build\.NETFramework\v4.5.2" "$env:FRAMEWORK_ROOT\v4.5.2" -Recurse
+          $frameworkDirectory = Join-Path $env:FRAMEWORK_ROOT ".NETFramework"
+          New-Item -ItemType Directory -Force -Path $frameworkDirectory | Out-Null
+          Copy-Item ".ci\Microsoft.NETFramework.ReferenceAssemblies.net451\build\.NETFramework\v4.5.1" "$frameworkDirectory\v4.5.1" -Recurse
+          Copy-Item ".ci\Microsoft.NETFramework.ReferenceAssemblies.net452\build\.NETFramework\v4.5.2" "$frameworkDirectory\v4.5.2" -Recurse
 
       - name: Restore NuGet packages
         shell: pwsh
