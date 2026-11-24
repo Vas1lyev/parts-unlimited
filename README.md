@@ -9,7 +9,7 @@ project planning, documentation, continuous integration, and delivery workflows.
 
 The project models an online auto-parts store and will be implemented as a
 .NET 8 application. GitHub is used for source control, documentation, work
-tracking, and CI. GanttPRO will be used for resource and delivery planning.
+tracking, delivery planning, and CI.
 
 ## Project goals
 
@@ -34,7 +34,6 @@ assets/     project branding and shared media
 - ASP.NET Core
 - GitHub Projects and Issues
 - GitHub Actions
-- GanttPRO
 
 ## Documentation
 
@@ -54,6 +53,9 @@ The setup record for the first practical work is available in
 
 Управление календарём, внешней командой и зависимостями поставки описано в
 документе [Практическая работа 3](docs/practices/3-delivery-planning.md).
+
+Настройка локального агента сборочного конвейера описана в документе
+[Практическая работа 4.0](docs/practices/4.0-self-hosted-runner.md).
 
 ## Текущее состояние
 
